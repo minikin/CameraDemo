@@ -62,6 +62,7 @@
 				FC88BA80200F80F80048BC8A /* Storyboards and Xibs */,
 				FC88BA7F200F80E70048BC8A /* Supporting Files */,
 				FC88BA7E200F80DB0048BC8A /* ViewControllers */,
+				FC88BA83200F89F50048BC8A /* ViewModels */,
 				FC88BA7D200F80D50048BC8A /* Views */,
 			);
 			path = CameraDemo;
@@ -100,6 +101,13 @@
 				FC88BA6D200F7E2E0048BC8A /* Main.storyboard */,
 			);
 			path = "Storyboards and Xibs";
+			sourceTree = "<group>";
+		};
+		FC88BA83200F89F50048BC8A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
