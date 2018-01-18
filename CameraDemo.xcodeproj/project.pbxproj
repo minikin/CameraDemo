@@ -14,6 +14,8 @@
 		FC88BA74200F7E2E0048BC8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC88BA72200F7E2E0048BC8A /* LaunchScreen.storyboard */; };
 		FC88BA7C200F80C50048BC8A /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88BA7B200F80C50048BC8A /* CaptureViewController.swift */; };
 		FC88BA82200F81D90048BC8A /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88BA81200F81D90048BC8A /* CameraView.swift */; };
+		FC88BA852010984B0048BC8A /* HolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88BA842010984B0048BC8A /* HolderView.swift */; };
+		FC88BA872010A17B0048BC8A /* CameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88BA862010A17B0048BC8A /* CameraButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		FC88BA75200F7E2E0048BC8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC88BA7B200F80C50048BC8A /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		FC88BA81200F81D90048BC8A /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		FC88BA842010984B0048BC8A /* HolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolderView.swift; sourceTree = "<group>"; };
+		FC88BA862010A17B0048BC8A /* CameraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				FC88BA81200F81D90048BC8A /* CameraView.swift */,
+				FC88BA842010984B0048BC8A /* HolderView.swift */,
+				FC88BA862010A17B0048BC8A /* CameraButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,7 +190,9 @@
 			files = (
 				FC88BA6C200F7E2E0048BC8A /* ViewController.swift in Sources */,
 				FC88BA7C200F80C50048BC8A /* CaptureViewController.swift in Sources */,
+				FC88BA852010984B0048BC8A /* HolderView.swift in Sources */,
 				FC88BA6A200F7E2E0048BC8A /* AppDelegate.swift in Sources */,
+				FC88BA872010A17B0048BC8A /* CameraButton.swift in Sources */,
 				FC88BA82200F81D90048BC8A /* CameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

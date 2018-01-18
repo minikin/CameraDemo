@@ -28,6 +28,8 @@ class CaptureViewController: UIViewController {
 	private let sampleBufferQueue = DispatchQueue.global(qos: .userInteractive)
 	private let imageProcessingQueue = DispatchQueue.global(qos: .userInitiated)
 	private let ciContext = CIContext()
+	private var topHolderView: HolderView?
+	private var bottomHolderView: HolderView?
 
 	// MARK: - ViewController LifeCycle
 
@@ -101,6 +103,18 @@ class CaptureViewController: UIViewController {
 			cameraView = CameraView(captureSession: captureSession)
 			view.addSubview(self.cameraView!)
 
+			// add topHolderView
+			topHolderView = HolderView(width:self.view.frame.width, height: 40)
+			view.addSubview(topHolderView!)
+
+			// add bottonholder
+			bottomHolderView = HolderView(width: self.view.frame.width, height: 120)
+			view.addSubview(bottomHolderView!)
+
+			NSLayoutConstraint.activate([
+				bottomHolderView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+				])
+
 			let output = AVCaptureVideoDataOutput()
 			output.alwaysDiscardsLateVideoFrames = true
 			output.setSampleBufferDelegate(self, queue: sampleBufferQueue)
@@ -143,8 +157,6 @@ class CaptureViewController: UIViewController {
 		settings.flashMode = .auto
 		photoOutput?.capturePhoto(with: settings, delegate: self)
 	}
-
-	
 
 
 }
