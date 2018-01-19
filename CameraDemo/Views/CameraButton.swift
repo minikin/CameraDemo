@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CameraButton: UIButton {
+final class CameraButton: UIButton {
 
 	// MARK: - Instance properties
 

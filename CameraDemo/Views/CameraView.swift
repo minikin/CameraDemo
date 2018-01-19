@@ -9,9 +9,14 @@
 import UIKit
 import AVFoundation
 
-class CameraView: UIView {
+final class CameraView: UIView {
+
+	// MARK: - Instance Properies
+
 	let previewLayer: AVCaptureVideoPreviewLayer!
 
+	// MARK: - View LifeCycle
+	
 	init(captureSession: AVCaptureSession) {
 		previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
 		previewLayer.backgroundColor = UIColor.black.cgColor

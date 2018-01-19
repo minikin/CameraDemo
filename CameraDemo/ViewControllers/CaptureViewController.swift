@@ -10,11 +10,11 @@ import UIKit
 import AVFoundation
 import CoreImage
 
-class CaptureViewController: UIViewController {
+final class CaptureViewController: UIViewController {
 
 	// MARK: - Injections
 	// MARK: - Instance Properties
-	lazy var captureSession: AVCaptureSession = {
+	private lazy var captureSession: AVCaptureSession = {
 		let session = AVCaptureSession()
 		session.sessionPreset = .high
 		return session
@@ -61,7 +61,7 @@ class CaptureViewController: UIViewController {
 	// MARK: - Actions
 
 	@objc
-	func onTap(_ tap: UITapGestureRecognizer) {
+	private func onTap(_ tap: UITapGestureRecognizer) {
 		takePhoto()
 	}
 
@@ -130,7 +130,7 @@ class CaptureViewController: UIViewController {
 		}
 	}
 
-	func withDeviceLock(on device: AVCaptureDevice, block: (AVCaptureDevice) -> Void) {
+	private func withDeviceLock(on device: AVCaptureDevice, block: (AVCaptureDevice) -> Void) {
 		do {
 			try device.lockForConfiguration()
 			block(device)
@@ -140,7 +140,7 @@ class CaptureViewController: UIViewController {
 		}
 	}
 
-	func takePhoto() {
+	private func takePhoto() {
 		guard let formats = photoOutput?.supportedPhotoPixelFormatTypes(for: .tif) else {
 			return
 		}
@@ -167,9 +167,7 @@ extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 }
 
 extension CaptureViewController: AVCapturePhotoCaptureDelegate {
-	func photoOutput(_ output: AVCapturePhotoOutput,
-									 didFinishProcessingPhoto photo: AVCapturePhoto,
-									 error: Error?) {
+	func photoOutput(_ output: AVCapturePhotoOutput,	didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
 
 		imageProcessingQueue.async {
 			guard let pixelBuffer = photo.pixelBuffer else {

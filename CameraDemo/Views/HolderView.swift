@@ -8,9 +8,10 @@
 
 import UIKit
 
-class HolderView: UIView {
+final class HolderView: UIView {
 
 	// MARK: - Instance Properies
+
 	let width: CGFloat
 	let height: CGFloat
 	let visualEffect: UIVisualEffectView
@@ -18,6 +19,7 @@ class HolderView: UIView {
 	override class var requiresConstraintBasedLayout: Bool { return true }
 
 	// MARK: - View LifeCycle
+	
 	init(width: CGFloat, height: CGFloat) {
 		self.width = width
 		self.height = height
