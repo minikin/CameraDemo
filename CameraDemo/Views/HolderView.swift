@@ -18,7 +18,7 @@ class HolderView: UIView {
 	override class var requiresConstraintBasedLayout: Bool { return true }
 
 	// MARK: - View LifeCycle
-	init(width: CGFloat, height:CGFloat) {
+	init(width: CGFloat, height: CGFloat) {
 		self.width = width
 		self.height = height
 		self.visualEffect = UIVisualEffectView(effect: UIBlurEffect(style: .light))
@@ -38,6 +38,6 @@ class HolderView: UIView {
 	}
 
 	required init?(coder aDecoder: NSCoder) {
-		fatalError()
+		fatalError("Can't create HolderView!")
 	}
 }

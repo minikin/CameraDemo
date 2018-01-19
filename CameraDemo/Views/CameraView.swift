@@ -25,7 +25,7 @@ class CameraView: UIView {
 	}
 
 	required init?(coder aDecoder: NSCoder) {
-		fatalError()
+		fatalError("Can't create CameraView!")
 	}
 
 	override func layoutSubviews() {

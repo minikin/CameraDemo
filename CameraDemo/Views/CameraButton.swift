@@ -10,7 +10,7 @@ import UIKit
 
 class CameraButton: UIButton {
 
-	// MARK - Instance properties
+	// MARK: - Instance properties
 
 	let buttonSize: CGFloat
 	let imageForNormalState: UIImage
@@ -42,12 +42,13 @@ class CameraButton: UIButton {
 	}
 
 	required init?(coder aDecoder: NSCoder) {
-		fatalError()
+		fatalError("Can create button for Camera!")
 	}
 
 	// MARK: - Actions
 
-	@objc func onButtonTapped() {
+	@objc
+	func onButtonTapped() {
 		isSelected = !isSelected
 	}
 }

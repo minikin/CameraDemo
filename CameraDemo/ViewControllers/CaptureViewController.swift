@@ -13,9 +13,6 @@ import CoreImage
 class CaptureViewController: UIViewController {
 
 	// MARK: - Injections
-
-
-
 	// MARK: - Instance Properties
 	lazy var captureSession: AVCaptureSession = {
 		let session = AVCaptureSession()
@@ -63,7 +60,8 @@ class CaptureViewController: UIViewController {
 
 	// MARK: - Actions
 
-	@objc func onTap(_ tap: UITapGestureRecognizer) {
+	@objc
+	func onTap(_ tap: UITapGestureRecognizer) {
 		takePhoto()
 	}
 
@@ -90,8 +88,8 @@ class CaptureViewController: UIViewController {
 	}
 
 	private func setupCaptureSession() {
-		guard captureSession.inputs.isEmpty else { return }
-		guard let camera = findCamera() else {
+		guard captureSession.inputs.isEmpty,
+		let camera = findCamera() else {
 			print("No camera found")
 			return
 		}
@@ -125,7 +123,6 @@ class CaptureViewController: UIViewController {
 			self.photoOutput = photoOutput
 			captureSession.addOutput(photoOutput)
 
-
 			captureSession.startRunning()
 		} catch let e {
 			print("Error creating capture session: \(e)")
@@ -144,7 +141,9 @@ class CaptureViewController: UIViewController {
 	}
 
 	func takePhoto() {
-		guard let formats = photoOutput?.supportedPhotoPixelFormatTypes(for: .tif) else { return }
+		guard let formats = photoOutput?.supportedPhotoPixelFormatTypes(for: .tif) else {
+			return
+		}
 		print("available pixel formats: \(formats)")
 		guard let uncompressedPixelType = formats.first else {
 			print("No pixel format types available")
@@ -152,12 +151,11 @@ class CaptureViewController: UIViewController {
 		}
 
 		let settings = AVCapturePhotoSettings(format: [
-			kCVPixelBufferPixelFormatTypeKey as String : uncompressedPixelType
+			kCVPixelBufferPixelFormatTypeKey as String: uncompressedPixelType
 			])
 		settings.flashMode = .auto
 		photoOutput?.capturePhoto(with: settings, delegate: self)
 	}
-
 
 }
 
@@ -168,7 +166,7 @@ extension CaptureViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 //	}
 }
 
-extension CaptureViewController : AVCapturePhotoCaptureDelegate {
+extension CaptureViewController: AVCapturePhotoCaptureDelegate {
 	func photoOutput(_ output: AVCapturePhotoOutput,
 									 didFinishProcessingPhoto photo: AVCapturePhoto,
 									 error: Error?) {
@@ -181,7 +179,7 @@ extension CaptureViewController : AVCapturePhotoCaptureDelegate {
 
 			let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
 			guard let cgImage = self.ciContext.createCGImage(ciImage, from: ciImage.extent) else {
-				fatalError()
+				fatalError("Can't create CGImage!")
 			}
 
 			let image = UIImage(cgImage: cgImage, scale: UIScreen.main.scale, orientation: .up)
@@ -189,5 +187,3 @@ extension CaptureViewController : AVCapturePhotoCaptureDelegate {
 		}
 	}
 }
-
-

@@ -16,10 +16,5 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func showCameraDidPressed(_ sender: UIButton) {
-
-		
 	}
-
-
 }
-
