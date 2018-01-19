@@ -75,9 +75,9 @@
 		FC88BA7D200F80D50048BC8A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FC88BA862010A17B0048BC8A /* CameraButton.swift */,
 				FC88BA81200F81D90048BC8A /* CameraView.swift */,
 				FC88BA842010984B0048BC8A /* HolderView.swift */,
-				FC88BA862010A17B0048BC8A /* CameraButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

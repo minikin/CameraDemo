@@ -104,7 +104,7 @@ class CaptureViewController: UIViewController {
 			view.addSubview(self.cameraView!)
 
 			// add topHolderView
-			topHolderView = HolderView(width:self.view.frame.width, height: 40)
+			topHolderView = HolderView(width: self.view.frame.width, height: 40)
 			view.addSubview(topHolderView!)
 
 			// add bottonholder
