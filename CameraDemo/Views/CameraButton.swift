@@ -30,7 +30,7 @@ final class CameraButton: UIButton {
 		adjustsImageWhenHighlighted = false
 
 		setImage(imageForNormalState, for: .normal)
-		setImage(imageForSelectedState, for: .selected)
+		setImage(imageForSelectedState, for: .highlighted)
 
 		imageView?.contentMode = .center
 

@@ -20,6 +20,7 @@ final class CaptureViewController: UIViewController {
 		return session
 	}()
 	private var photoOutput: AVCapturePhotoOutput?
+	private let cameraShutterSoundID: SystemSoundID = 1108
 	private var cameraView: CameraView?
 	private var flashLayer: CALayer?
 	private let sampleBufferQueue = DispatchQueue.global(qos: .userInteractive)
@@ -28,13 +29,13 @@ final class CaptureViewController: UIViewController {
 	private var topHolderView: HolderView?
 	private var bottomHolderView: HolderView?
 
+	private var takePhotoButton: CameraButton?
+
 	// MARK: - ViewController LifeCycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		let tap = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
-		view.addGestureRecognizer(tap)
+		UIApplication.shared.isStatusBarHidden = true
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -56,13 +57,6 @@ final class CaptureViewController: UIViewController {
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		cameraView?.bounds = view.frame
-	}
-
-	// MARK: - Actions
-
-	@objc
-	private func onTap(_ tap: UITapGestureRecognizer) {
-		takePhoto()
 	}
 
 	// MARK: - Rotation
@@ -113,6 +107,15 @@ final class CaptureViewController: UIViewController {
 				bottomHolderView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
 				])
 
+			takePhotoButton =  CameraButton(buttonSize: 80, imageForNormalState: #imageLiteral(resourceName: "makePhoto_normal"), imageForSelectedState: #imageLiteral(resourceName: "makePhoto_pressed"))
+			takePhotoButton?.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
+			bottomHolderView?.addSubview(takePhotoButton!)
+
+			NSLayoutConstraint.activate([
+				takePhotoButton!.centerXAnchor.constraint(equalTo: (bottomHolderView?.safeAreaLayoutGuide.centerXAnchor)!),
+				takePhotoButton!.centerYAnchor.constraint(equalTo: (bottomHolderView?.safeAreaLayoutGuide.centerYAnchor)!)
+				])
+
 			let output = AVCaptureVideoDataOutput()
 			output.alwaysDiscardsLateVideoFrames = true
 			output.setSampleBufferDelegate(self, queue: sampleBufferQueue)
@@ -140,6 +143,9 @@ final class CaptureViewController: UIViewController {
 		}
 	}
 
+	// MARK: - Actions
+
+	@objc
 	private func takePhoto() {
 		guard let formats = photoOutput?.supportedPhotoPixelFormatTypes(for: .tif) else {
 			return
@@ -155,6 +161,20 @@ final class CaptureViewController: UIViewController {
 			])
 		settings.flashMode = .auto
 		photoOutput?.capturePhoto(with: settings, delegate: self)
+	}
+
+	@objc
+	func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+		if let error = error {
+			// we got back an error!
+			let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+			ac.addAction(UIAlertAction(title: "OK", style: .default))
+			present(ac, animated: true)
+		} else {
+			let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+			ac.addAction(UIAlertAction(title: "OK", style: .default))
+			present(ac, animated: true)
+		}
 	}
 
 }
@@ -181,6 +201,7 @@ extension CaptureViewController: AVCapturePhotoCaptureDelegate {
 			}
 
 			let image = UIImage(cgImage: cgImage, scale: UIScreen.main.scale, orientation: .up)
+			UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
 			print(image)
 		}
 	}

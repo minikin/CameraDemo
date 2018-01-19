@@ -19,7 +19,7 @@ final class HolderView: UIView {
 	override class var requiresConstraintBasedLayout: Bool { return true }
 
 	// MARK: - View LifeCycle
-	
+
 	init(width: CGFloat, height: CGFloat) {
 		self.width = width
 		self.height = height
