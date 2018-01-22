@@ -351,6 +351,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8369V84MM;
 				INFOPLIST_FILE = "$(SRCROOT)/CameraDemo/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.minikin.CameraDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -366,6 +367,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8369V84MM;
 				INFOPLIST_FILE = "$(SRCROOT)/CameraDemo/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.minikin.CameraDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -107,6 +107,11 @@ final class CaptureViewController: UIViewController {
 				bottomHolderView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
 				])
 
+
+
+
+      
+
 			takePhotoButton =  CameraButton(buttonSize: 80, imageForNormalState: #imageLiteral(resourceName: "makePhoto_normal"), imageForSelectedState: #imageLiteral(resourceName: "makePhoto_pressed"))
 			takePhotoButton?.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
 			bottomHolderView?.addSubview(takePhotoButton!)
